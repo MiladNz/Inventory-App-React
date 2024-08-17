@@ -1,4 +1,6 @@
 import "./App.css";
+import Header from "./components/Header";
+import ProductProvider from "./context/ProductContext";
 
 const products = [
   {
@@ -39,16 +41,9 @@ const categories = [
 function App() {
   return (
     <div className="bg-slate-800 h-screen">
-      {/* <!-- app bar --> */}
-      <div className="h-12 flex items-center justify-center gap-x-4 bg-slate-700 mb-6">
-        <h1 className="text-xl font-bold text-slate-300">
-          Inventory App using Tailwind and React.js
-        </h1>
-        {/* <!-- nummber of products --> */}
-        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 text-slate-300 border-2 border-slate-300 font-bold">
-          00
-        </span>
-      </div>
+      <ProductProvider>
+        <Header />
+      </ProductProvider>
     </div>
   );
 }
