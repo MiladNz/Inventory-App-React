@@ -14,7 +14,8 @@ function ProductProvider({ children }) {
   useEffect(() => {
     const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
     setProducts(savedProducts);
-  }, []);
+  }, [setProducts]);
+
   useEffect(() => {
     localStorage.setItem("products", JSON.stringify(products));
   }, [products]);

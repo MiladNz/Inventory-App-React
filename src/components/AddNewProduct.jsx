@@ -1,9 +1,11 @@
 import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
+import { CategoryContext } from "../context/CategoryContext";
 
 function AddNewProduct() {
   const { productData, addNewProductHandler, changeHandler } =
     useContext(ProductContext);
+  const { categories } = useContext(CategoryContext);
   return (
     <div className="mb-6">
       <h2 className="text-xl text-slate-300 font-bold mb-2">Add New Product</h2>
@@ -43,15 +45,17 @@ function AddNewProduct() {
             onChange={changeHandler}
             name="category"
             className="bg-transparent text-slate-400 rounded-xl w-full border-slate-500 p-2">
-            <option className="bg-slate-500 text-slate-300" value="">
+            <option className="bg-slate-500 text-slate-300">
               select a category
             </option>
-            {/* <option className="bg-slate-500 text-slate-300" value="backend">
-              backend
-            </option>
-            <option className="bg-slate-500 text-slate-300" value="frontend">
-              frontend
-            </option> */}
+            {categories.map((item) => (
+              <option
+                key={item.id}
+                className="bg-slate-500 text-slate-300"
+                value={item.title}>
+                {item.title}
+              </option>
+            ))}
           </select>
         </div>
         <div className="flex items-center justify-between gap-x-4">

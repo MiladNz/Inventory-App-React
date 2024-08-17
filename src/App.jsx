@@ -4,6 +4,7 @@ import AddNewCategory from "./components/AddNewCategory";
 import Header from "./components/Header";
 import ProductProvider from "./context/ProductContext";
 import AddNewProduct from "./components/AddNewProduct";
+import CategoryProvider from "./context/CategoryContext";
 
 const products = [
   {
@@ -46,19 +47,28 @@ function App() {
 
   return (
     <div className="bg-slate-800 min-h-screen ">
-      <ProductProvider>
-        <Header
-          isOpenCategory={isOpenCategory}
-          setIsOpenCategory={setIsOpenCategory}
-        />
-        <div className="container mx-auto grid grid-cols-10 gap-2">
-          <div className="col-span-4">
-            {isOpenCategory ? <AddNewCategory /> : ""}
-            <AddNewProduct />
+      <CategoryProvider>
+        <ProductProvider>
+          <Header
+            isOpenCategory={isOpenCategory}
+            setIsOpenCategory={setIsOpenCategory}
+          />
+          <div className="container mx-auto grid grid-cols-10 gap-2">
+            <div className="col-span-4">
+              {isOpenCategory ? (
+                <AddNewCategory
+                  isOpenCategory={isOpenCategory}
+                  setIsOpenCategory={setIsOpenCategory}
+                />
+              ) : (
+                ""
+              )}
+              <AddNewProduct />
+            </div>
+            <div className="col-span-6">Product list</div>
           </div>
-          <div className="col-span-6">Product list</div>
-        </div>
-      </ProductProvider>
+        </ProductProvider>
+      </CategoryProvider>
     </div>
   );
 }
