@@ -1,6 +1,9 @@
+import { useState } from "react";
 import "./App.css";
+import AddNewCategory from "./components/AddNewCategory";
 import Header from "./components/Header";
 import ProductProvider from "./context/ProductContext";
+import AddNewProduct from "./components/AddNewProduct";
 
 const products = [
   {
@@ -39,10 +42,22 @@ const categories = [
 ];
 
 function App() {
+  const [isOpenCategory, setIsOpenCategory] = useState(false);
+
   return (
-    <div className="bg-slate-800 h-screen">
+    <div className="bg-slate-800 h-screen ">
       <ProductProvider>
-        <Header />
+        <Header
+          isOpenCategory={isOpenCategory}
+          setIsOpenCategory={setIsOpenCategory}
+        />
+        <div className="container mx-auto grid grid-cols-10 gap-2">
+          <div className="col-span-4">
+            {isOpenCategory ? <AddNewCategory /> : ""}
+            <AddNewProduct />
+          </div>
+          <div className="col-span-6">Product list</div>
+        </div>
       </ProductProvider>
     </div>
   );
