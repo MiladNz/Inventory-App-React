@@ -1,4 +1,20 @@
+import { useState } from "react";
+
 function AddNewCategory() {
+  const [category, setCategory] = useState([
+    {
+      id: 1,
+      title: "frontend",
+      description: "frontend of applications",
+      createdAt: "2021-11-01T10:47:26.889Z",
+    },
+    {
+      id: 2,
+      title: "backend",
+      description: "the backend of the applications",
+      createdAt: "2021-10-01T10:47:26.889Z",
+    },
+  ]);
   return (
     <div>
       <section>
@@ -16,7 +32,7 @@ function AddNewCategory() {
               <input
                 type="text"
                 name="category-title"
-                className="bg-transparent rounded-xl border border-slate-500 text-slate-400"
+                className="bg-transparent rounded-xl border border-slate-500 text-slate-400 p-2"
               />
             </div>
             <div className="">
@@ -28,7 +44,7 @@ function AddNewCategory() {
               <textarea
                 type="text"
                 name="category-description"
-                className="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full"></textarea>
+                className="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full p-2"></textarea>
             </div>
             <div className="flex items-center justify-between gap-x-4">
               <button className="flex-1 bg-transparent text-slate-400 rounded-xl border border-slate-400 py-2">
