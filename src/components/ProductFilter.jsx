@@ -1,38 +1,42 @@
+import { useContext, useState } from "react";
+import { ProductContext } from "../context/ProductContext";
+
 function ProductFilter() {
+  const { searchValue, sort, searchHandler, sortHandler } =
+    useContext(ProductContext);
   return (
     <div>
       <h2 className="text-xl text-slate-300 font-bold mb-2">Filter Products</h2>
       <div className="flex items-center justify-between mb-6">
         <label
-          htmlFor="search-input"
+          htmlFor="search"
           className="text-slate-500 text-lg font-semibold">
           Search
         </label>
         <input
+          value={searchValue}
+          onChange={searchHandler}
           type="text"
-          name="search-input"
-          id="search-input"
+          name="search"
+          id="search"
           className="bg-transparent rounded-xl border border-slate-500 text-slate-400 p-2"
         />
       </div>
       <div className="flex items-center justify-between mb-6">
-        <label
-          htmlFor="sort-products"
-          className="text-slate-500 text-lg font-semibold">
+        <label htmlFor="sort" className="text-slate-500 text-lg font-semibold">
           Sort
         </label>
         <select
-          name="sort-products"
-          id="sort-products"
+          value={sort}
+          onChange={sortHandler}
+          name="sort"
+          id="sort"
           className="bg-transparent text-slate-400 rounded-xl p-2 border border-slate-500">
-          <option
-            className="bg-slate-500 text-slate-300"
-            selected
-            value="newest">
-            newest
+          <option className="bg-slate-500 text-slate-300" value="latest">
+            latest
           </option>
-          <option className="bg-slate-500 text-slate-300" value="oldest">
-            oldest
+          <option className="bg-slate-500 text-slate-300" value="earliest">
+            earliest
           </option>
         </select>
       </div>
@@ -44,6 +48,7 @@ function ProductFilter() {
           Category
         </label>
         <select
+          value={""}
           name="category"
           id="category"
           className="bg-transparent text-slate-400 rounded-xl p-2 border border-slate-500">
@@ -51,14 +56,14 @@ function ProductFilter() {
             select a category
           </option>
           {/* <option
-            className="bg-slate-500 text-slate-300"
-            selected
-            value="newest">
-            newest
-          </option>
-          <option className="bg-slate-500 text-slate-300" value="oldest">
-            oldest
-          </option> */}
+          className="bg-slate-500 text-slate-300"
+          selected
+          value="newest">
+          newest
+        </option>
+        <option className="bg-slate-500 text-slate-300" value="oldest">
+          oldest
+        </option> */}
         </select>
       </div>
     </div>

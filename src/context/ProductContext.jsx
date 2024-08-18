@@ -11,6 +11,9 @@ function ProductProvider({ children }) {
   });
   const [products, setProducts] = useState([]);
   const [deleteLocal, setDeleteLocal] = useState(false);
+  const [sort, setSort] = useState("latest");
+  const [searchValue, setSearchValue] = useState("");
+  const [sortedFilteredProducts, setSortedFilteredProducts] = useState([]);
 
   useEffect(() => {
     const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
@@ -57,6 +60,26 @@ function ProductProvider({ children }) {
     setProducts(result);
   };
 
+  const searchHandler = (e) => {
+    setSearchValue(e.target.value.trim().toLowerCase());
+  };
+  const sortHandler = (e) => {
+    setSort(e.target.value);
+  };
+  useEffect(() => {
+    let allProducts = products;
+    allProducts = allProducts.filter((product) =>
+      product.title.toLowerCase().includes(searchValue)
+    );
+    allProducts = [...allProducts].sort((a, b) => {
+      if (sort === "latest") new Date(b.createdAt) - new Date(a.createdAt);
+      else if (sort === "earliest")
+        new Date(a.createdAt) - new Date(b.createdAt);
+    });
+
+    setSortedFilteredProducts(allProducts);
+  }, [products, searchValue, sort]);
+
   return (
     <ProductContext.Provider
       value={{
@@ -67,6 +90,13 @@ function ProductProvider({ children }) {
         addNewProductHandler,
         changeHandler,
         deleteProductHandler,
+        searchValue,
+        setSearchValue,
+        sort,
+        setSort,
+        searchHandler,
+        sortHandler,
+        sortedFilteredProducts,
       }}>
       {children}
     </ProductContext.Provider>

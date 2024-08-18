@@ -3,13 +3,14 @@ import { ProductContext } from "../context/ProductContext";
 import { BiTrash } from "react-icons/bi";
 
 function DisplayProducts() {
-  const { products, deleteProductHandler } = useContext(ProductContext);
+  const { deleteProductHandler, sortedFilteredProducts } =
+    useContext(ProductContext);
 
   return (
     <div>
       <h2 className="text-xl text-slate-300 font-bold mb-2">Product List</h2>
       <div className="overflow-x-auto">
-        {products.map((pr) => {
+        {sortedFilteredProducts.map((pr) => {
           return (
             <div
               key={pr.id}
