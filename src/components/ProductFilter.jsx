@@ -1,7 +1,7 @@
 function ProductFilter() {
   return (
     <div>
-      <h2 className="text-xl text-slate-300 font-bold mb-2">Product List</h2>
+      <h2 className="text-xl text-slate-300 font-bold mb-2">Filter Products</h2>
       <div className="flex items-center justify-between mb-6">
         <label htmlFor="search-input" className="text-slate-500 text-lg">
           search

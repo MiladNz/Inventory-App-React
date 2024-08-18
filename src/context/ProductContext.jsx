@@ -34,7 +34,7 @@ function ProductProvider({ children }) {
       {
         ...productData,
         id: Date.now(),
-        createdAt: new Date().toISOString(),
+        createdAt: new Date().toLocaleDateString("fa-IR"),
       },
     ]);
     setProductData({
