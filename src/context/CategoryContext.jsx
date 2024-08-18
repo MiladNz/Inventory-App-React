@@ -29,6 +29,7 @@ function CategoryProvider({ children }) {
 
   const addNewCategoryHandler = (e) => {
     e.preventDefault();
+    if (!categoryData.title || !categoryData.description) return;
     setCategories((prev) => [
       ...prev,
       {

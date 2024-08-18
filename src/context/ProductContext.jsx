@@ -10,17 +10,20 @@ function ProductProvider({ children }) {
     quantity: 0,
   });
   const [products, setProducts] = useState([]);
+  const [deleteLocal, setDeleteLocal] = useState(false);
 
   useEffect(() => {
     const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
     setProducts(savedProducts);
-  }, [setProducts]);
+  }, []);
 
   useEffect(() => {
     if (products.length) {
+      setDeleteLocal(false);
       localStorage.setItem("products", JSON.stringify(products));
     }
-  }, [products]);
+    if (deleteLocal) localStorage.removeItem("products");
+  }, [products, deleteLocal]);
 
   const changeHandler = (e) => {
     const { name, value } = e.target;
@@ -29,6 +32,8 @@ function ProductProvider({ children }) {
 
   const addNewProductHandler = (e) => {
     e.preventDefault();
+    if (!productData.category || !productData.quantity || !productData.title)
+      return;
     setProducts((prev) => [
       ...prev,
       {
@@ -44,6 +49,14 @@ function ProductProvider({ children }) {
     });
   };
 
+  const deleteProductHandler = (id) => {
+    const result = products.filter((product) => product.id !== id);
+    if (products.length === 1) {
+      setDeleteLocal(true);
+    }
+    setProducts(result);
+  };
+
   return (
     <ProductContext.Provider
       value={{
@@ -53,6 +66,7 @@ function ProductProvider({ children }) {
         setProducts,
         addNewProductHandler,
         changeHandler,
+        deleteProductHandler,
       }}>
       {children}
     </ProductContext.Provider>

@@ -3,8 +3,10 @@ function ProductFilter() {
     <div>
       <h2 className="text-xl text-slate-300 font-bold mb-2">Filter Products</h2>
       <div className="flex items-center justify-between mb-6">
-        <label htmlFor="search-input" className="text-slate-500 text-lg">
-          search
+        <label
+          htmlFor="search-input"
+          className="text-slate-500 text-lg font-semibold">
+          Search
         </label>
         <input
           type="text"
@@ -14,16 +16,15 @@ function ProductFilter() {
         />
       </div>
       <div className="flex items-center justify-between mb-6">
-        <label htmlFor="sort-products" className="text-slate-500 text-lg">
-          sort
+        <label
+          htmlFor="sort-products"
+          className="text-slate-500 text-lg font-semibold">
+          Sort
         </label>
         <select
           name="sort-products"
           id="sort-products"
           className="bg-transparent text-slate-400 rounded-xl p-2 border border-slate-500">
-          <option className="bg-slate-500 text-slate-300" value="">
-            select a category
-          </option>
           <option
             className="bg-slate-500 text-slate-300"
             selected
@@ -37,7 +38,9 @@ function ProductFilter() {
       </div>
       {/*  */}
       <div className="flex items-center justify-between mb-6">
-        <label htmlFor="category" className="text-slate-500 text-lg">
+        <label
+          htmlFor="category"
+          className="text-slate-500 text-lg font-semibold">
           Category
         </label>
         <select
