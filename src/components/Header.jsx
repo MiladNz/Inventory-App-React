@@ -11,14 +11,14 @@ function Header({ isOpenCategory, setIsOpenCategory }) {
           Inventory App using Tailwind and React.js
         </h1>
         {/* <!-- number of products --> */}
-        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 text-slate-300 border-2 border-slate-300 font-bold">
-          {productData.length}
-        </span>
+        <span
+          value={productData.quantity}
+          className="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 text-slate-300 border-2 border-slate-300 font-bold"></span>
       </div>
-      <div className="ml-10">
+      <div className="container mx-auto p-4 md:flex-row flex-col flex lg:max-w-screen-xl  ">
         {!isOpenCategory && (
           <button
-            className="text-slate-600 text-lg mb-4 font-medium"
+            className="text-slate-600 text-lg font-medium"
             onClick={() => setIsOpenCategory(!isOpenCategory)}>
             Add new Category?
           </button>

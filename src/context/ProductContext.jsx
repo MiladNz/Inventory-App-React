@@ -17,7 +17,9 @@ function ProductProvider({ children }) {
   }, [setProducts]);
 
   useEffect(() => {
-    localStorage.setItem("products", JSON.stringify(products));
+    if (products.length) {
+      localStorage.setItem("products", JSON.stringify(products));
+    }
   }, [products]);
 
   const changeHandler = (e) => {
@@ -27,10 +29,10 @@ function ProductProvider({ children }) {
 
   const addNewProductHandler = (e) => {
     e.preventDefault();
-    setProducts((pr) => [
-      ...pr,
+    setProducts((prev) => [
+      ...prev,
       {
-        productData,
+        ...productData,
         id: Date.now(),
         createdAt: new Date().toISOString(),
       },

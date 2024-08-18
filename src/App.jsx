@@ -5,6 +5,8 @@ import Header from "./components/Header";
 import ProductProvider from "./context/ProductContext";
 import AddNewProduct from "./components/AddNewProduct";
 import CategoryProvider from "./context/CategoryContext";
+import DisplayProducts from "./components/DisplayProducts";
+import ProductFilter from "./components/ProductFilter";
 
 const products = [
   {
@@ -53,8 +55,8 @@ function App() {
             isOpenCategory={isOpenCategory}
             setIsOpenCategory={setIsOpenCategory}
           />
-          <div className="container mx-auto grid grid-cols-10 gap-2">
-            <div className="col-span-4">
+          <div className="container mx-auto p-4 md:flex-row flex-col flex md:justify-between lg:max-w-screen-xl md:gap-x-12">
+            <div className="w-full">
               {isOpenCategory ? (
                 <AddNewCategory
                   isOpenCategory={isOpenCategory}
@@ -65,7 +67,10 @@ function App() {
               )}
               <AddNewProduct />
             </div>
-            <div className="col-span-6">Product list</div>
+            <div className="w-full">
+              <ProductFilter />
+              <DisplayProducts />
+            </div>
           </div>
         </ProductProvider>
       </CategoryProvider>

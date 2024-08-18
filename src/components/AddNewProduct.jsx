@@ -44,7 +44,7 @@ function AddNewProduct() {
             value={productData.category}
             onChange={changeHandler}
             name="category"
-            className="bg-transparent text-slate-400 rounded-xl w-full border-slate-500 p-2">
+            className="bg-transparent text-slate-400 rounded-xl w-full p-2 border border-slate-500">
             <option className="bg-slate-500 text-slate-300">
               select a category
             </option>

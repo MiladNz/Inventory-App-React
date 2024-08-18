@@ -13,12 +13,13 @@ function CategoryProvider({ children }) {
   useEffect(() => {
     const savedCategories =
       JSON.parse(localStorage.getItem("categories")) || [];
-
     setCategories(savedCategories);
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("categories", JSON.stringify(categories));
+    if (categories.length) {
+      localStorage.setItem("categories", JSON.stringify(categories));
+    }
   }, [categories]);
 
   const changeHandler = (e) => {
