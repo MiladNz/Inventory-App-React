@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 import { CategoryContext } from "../context/CategoryContext";
 
@@ -15,7 +15,9 @@ function ProductFilter() {
 
   return (
     <div>
-      <h2 className="text-xl text-slate-300 font-bold mb-2">Filter Products</h2>
+      <h2 className="text-xl text-slate-300 font-bold mb-5 border-b border-b-slate-400">
+        Filter Products
+      </h2>
       <div className="flex items-center justify-between mb-6">
         <label
           htmlFor="search"

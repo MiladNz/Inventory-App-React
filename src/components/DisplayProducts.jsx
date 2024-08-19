@@ -8,7 +8,9 @@ function DisplayProducts() {
 
   return (
     <div>
-      <h2 className="text-xl text-slate-300 font-bold mb-2">Product List</h2>
+      <h2 className="text-xl text-slate-300 font-bold mb-5 border-b border-b-slate-400">
+        Product List
+      </h2>
       <div className="overflow-x-auto">
         {sortedFilteredProducts.map((pr) => {
           return (
@@ -20,10 +22,10 @@ function DisplayProducts() {
                 <span className="text-slate-400">
                   {new Date(pr.createdAt).toLocaleDateString("fa-IR")}
                 </span>
-                <span className="block px-3 py-0.5 text-slate-400 border border-slate-400 text-sm rounded-xl">
+                <span className="block px-3 py-0.5 text-slate-200  border border-amber-500 text-sm rounded-xl">
                   {pr.category}
                 </span>
-                <span className="flex items-center justify-center px-3 py-0.5 rounded-xl bg-slate-500 text-slate-300 border-2 border-slate-300">
+                <span className="flex items-center justify-center px-3 py-0.5 rounded-xl bg-amber-600 text-slate-100 border-2 border-slate-300">
                   {pr.quantity}
                 </span>
                 <button

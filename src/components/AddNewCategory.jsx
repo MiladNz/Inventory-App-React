@@ -23,6 +23,7 @@ function AddNewCategory({ isOpenCategory, setIsOpenCategory }) {
                 onChange={changeHandler}
                 type="text"
                 name="title"
+                id="title"
                 className="bg-transparent rounded-xl border border-slate-500 text-slate-400 p-2"
               />
             </div>
@@ -37,18 +38,17 @@ function AddNewCategory({ isOpenCategory, setIsOpenCategory }) {
                 onChange={changeHandler}
                 type="text"
                 name="description"
+                id="description"
                 className="bg-transparent rounded-xl border border-slate-500 text-slate-400 w-full p-2"></textarea>
             </div>
             <div className="flex items-center justify-between gap-x-4">
               <button
                 type="button"
                 onClick={() => setIsOpenCategory(!isOpenCategory)}
-                className="flex-1 bg-transparent text-slate-400 rounded-xl border border-slate-400 py-2">
+                className="flex-1 bg-transparent text-slate-400 rounded-xl border border-slate-400 py-2 hover:bg-red-600 hover:text-white">
                 Cancel
               </button>
-              <button
-                id="add-new-category"
-                className="flex-1 bg-slate-500 text-slate-200 rounded-xl py-2">
+              <button className="flex-1 bg-slate-500 text-slate-200 rounded-xl py-2 hover:bg-green-600 hover:text-white">
                 Add new category
               </button>
             </div>
