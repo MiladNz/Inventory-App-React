@@ -41,6 +41,7 @@ function AddNewCategory({ isOpenCategory, setIsOpenCategory }) {
             </div>
             <div className="flex items-center justify-between gap-x-4">
               <button
+                type="button"
                 onClick={() => setIsOpenCategory(!isOpenCategory)}
                 className="flex-1 bg-transparent text-slate-400 rounded-xl border border-slate-400 py-2">
                 Cancel

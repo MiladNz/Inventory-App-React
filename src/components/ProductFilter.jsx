@@ -1,9 +1,18 @@
 import { useContext, useState } from "react";
 import { ProductContext } from "../context/ProductContext";
+import { CategoryContext } from "../context/CategoryContext";
 
 function ProductFilter() {
-  const { searchValue, sort, searchHandler, sortHandler } =
-    useContext(ProductContext);
+  const {
+    searchValue,
+    sort,
+    searchHandler,
+    sortHandler,
+    categoryValue,
+    categoryHandler,
+  } = useContext(ProductContext);
+  const { categories } = useContext(CategoryContext);
+
   return (
     <div>
       <h2 className="text-xl text-slate-300 font-bold mb-2">Filter Products</h2>
@@ -48,22 +57,22 @@ function ProductFilter() {
           Category
         </label>
         <select
-          value={""}
+          value={categoryValue}
+          onChange={categoryHandler}
           name="category"
           id="category"
           className="bg-transparent text-slate-400 rounded-xl p-2 border border-slate-500">
-          <option className="bg-slate-500 text-slate-300">
-            select a category
+          <option className="bg-slate-500 text-slate-300" value="">
+            All
           </option>
-          {/* <option
-          className="bg-slate-500 text-slate-300"
-          selected
-          value="newest">
-          newest
-        </option>
-        <option className="bg-slate-500 text-slate-300" value="oldest">
-          oldest
-        </option> */}
+          {categories.map((cat) => (
+            <option
+              key={cat.id}
+              value={cat.title}
+              className="bg-slate-500 text-slate-300">
+              {cat.title}
+            </option>
+          ))}
         </select>
       </div>
     </div>

@@ -14,7 +14,7 @@ function ProductProvider({ children }) {
   const [sort, setSort] = useState("latest");
   const [searchValue, setSearchValue] = useState("");
   const [sortedFilteredProducts, setSortedFilteredProducts] = useState([]);
-
+  const [categoryValue, setCategoryValue] = useState("");
   useEffect(() => {
     const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
     setProducts(savedProducts);
@@ -42,7 +42,7 @@ function ProductProvider({ children }) {
       {
         ...productData,
         id: Date.now(),
-        createdAt: new Date().toLocaleDateString("fa-IR"),
+        createdAt: new Date().toISOString(),
       },
     ]);
     setProductData({
@@ -60,25 +60,42 @@ function ProductProvider({ children }) {
     setProducts(result);
   };
 
+  useEffect(() => {
+    let allProducts = products;
+    allProducts = searchProducts(allProducts);
+    allProducts = sortProducts(allProducts);
+    allProducts = filterByCategory(allProducts);
+    setSortedFilteredProducts(allProducts);
+  }, [products, searchValue, sort, categoryValue]);
+
   const searchHandler = (e) => {
     setSearchValue(e.target.value.trim().toLowerCase());
   };
   const sortHandler = (e) => {
     setSort(e.target.value);
   };
-  useEffect(() => {
-    let allProducts = products;
-    allProducts = allProducts.filter((product) =>
+  const categoryHandler = (e) => {
+    setCategoryValue(e.target.value);
+  };
+
+  const searchProducts = (productList) => {
+    return productList.filter((product) =>
       product.title.toLowerCase().includes(searchValue)
     );
-    allProducts = [...allProducts].sort((a, b) => {
+  };
+
+  const sortProducts = (productList) => {
+    return [...productList].sort((a, b) => {
       if (sort === "latest") new Date(b.createdAt) - new Date(a.createdAt);
       else if (sort === "earliest")
         new Date(a.createdAt) - new Date(b.createdAt);
     });
+  };
 
-    setSortedFilteredProducts(allProducts);
-  }, [products, searchValue, sort]);
+  const filterByCategory = (productList) => {
+    if (!categoryValue) return productList;
+    return productList.filter((pr) => pr.category === categoryValue);
+  };
 
   return (
     <ProductContext.Provider
@@ -97,6 +114,8 @@ function ProductProvider({ children }) {
         searchHandler,
         sortHandler,
         sortedFilteredProducts,
+        categoryHandler,
+        categoryValue,
       }}>
       {children}
     </ProductContext.Provider>

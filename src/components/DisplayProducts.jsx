@@ -17,7 +17,9 @@ function DisplayProducts() {
               className="flex justify-between mb-8 w-full min-w-[400px]">
               <span className="text-slate-400">{pr.title}</span>
               <div className="flex items-center gap-x-3">
-                <span className="text-slate-400">{pr.createdAt}</span>
+                <span className="text-slate-400">
+                  {new Date(pr.createdAt).toLocaleDateString("fa-IR")}
+                </span>
                 <span className="block px-3 py-0.5 text-slate-400 border border-slate-400 text-sm rounded-xl">
                   {pr.category}
                 </span>
