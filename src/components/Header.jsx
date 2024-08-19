@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { ProductContext } from "../context/ProductContext";
 
 function Header({ isOpenCategory, setIsOpenCategory }) {
-  const { productData } = useContext(ProductContext);
+  const { products } = useContext(ProductContext);
   return (
     <div>
       {/* <!-- app bar --> */}
@@ -11,9 +11,9 @@ function Header({ isOpenCategory, setIsOpenCategory }) {
           Inventory App using Tailwind and React.js
         </h1>
         {/* <!-- number of products --> */}
-        <span
-          value={productData.quantity}
-          className="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 text-slate-300 border-2 border-slate-300 font-bold"></span>
+        <span className="flex items-center justify-center w-7 h-7 rounded-full bg-slate-500 text-slate-300 border-2 border-slate-300 font-bold">
+          {products.length}
+        </span>
       </div>
       <div className="container mx-auto p-4 md:flex-row flex-col flex lg:max-w-screen-xl  ">
         {!isOpenCategory && (
