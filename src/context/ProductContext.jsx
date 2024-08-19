@@ -13,8 +13,8 @@ function ProductProvider({ children }) {
   const [deleteLocal, setDeleteLocal] = useState(false);
   const [sort, setSort] = useState("latest");
   const [searchValue, setSearchValue] = useState("");
-  const [sortedFilteredProducts, setSortedFilteredProducts] = useState([]);
   const [categoryValue, setCategoryValue] = useState("");
+  const [sortedFilteredProducts, setSortedFilteredProducts] = useState([]);
   useEffect(() => {
     const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
     setProducts(savedProducts);
@@ -86,9 +86,11 @@ function ProductProvider({ children }) {
 
   const sortProducts = (productList) => {
     return [...productList].sort((a, b) => {
-      if (sort === "latest") new Date(b.createdAt) - new Date(a.createdAt);
-      else if (sort === "earliest")
-        new Date(a.createdAt) - new Date(b.createdAt);
+      if (sort === "latest") {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+      } else if (sort === "earliest") {
+        return new Date(a.createdAt) - new Date(b.createdAt);
+      }
     });
   };
 
